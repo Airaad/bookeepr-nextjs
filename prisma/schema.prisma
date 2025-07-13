@@ -14,15 +14,17 @@ model User {
   password   String
   name       String
   books      Book[]
+  createdAt  DateTime @default(now())
 }
 
 model Book {
-  id      Int      @id @default(autoincrement())
-  isbn    Int
-  title   String
-  author  String
-  content String
-  rating  Int
-  userId  Int
-  user    User     @relation(fields: [userId], references: [id])
+  id        Int      @id @default(autoincrement())
+  isbn      Int
+  title     String
+  author    String
+  content   String
+  rating    Int
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
 }
