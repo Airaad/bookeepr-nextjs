@@ -6,7 +6,7 @@ import { compareHash } from "@/lib/hash";
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      name: "email",
+      name: "Email",
       credentials: {
         email: {
           label: "Email",
@@ -21,22 +21,34 @@ export const authOptions: NextAuthOptions = {
       },
 
       async authorize(credentials) {
-        const email = credentials!.email;
-        const password = credentials!.password;
-        const user = await prisma.user.findUnique({ where: { email } });
-        if (!user || !(await compareHash(password, user.password))) {
+        const email = credentials?.email;
+        const password = credentials?.password;
+
+        try {
+          const user = await prisma.user.findUnique({ where: { email } });
+          //@ts-ignore
+          if (!user || !(await compareHash(password, user.password))) {
+            return null;
+          }
+          return {
+            id: user.id.toString(),
+            name: user.name,
+            email: user.email,
+          };
+        } catch (error) {
+          console.error("Something went wrong", error);
           return null;
         }
-        return {
-          id: user.id.toString(),
-          name: user.name,
-          email: user.email,
-        };
       },
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
-  session: { strategy: "jwt" },
+  pages: {
+    signIn: "/signin",
+  },
+  session: {
+    strategy: "jwt",
+  },
   callbacks: {
     async session({ session, token }) {
       if (session.user && token.sub) {
