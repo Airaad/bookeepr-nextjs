@@ -1,23 +1,23 @@
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "../../(authentication)/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
-export async function GET(bookId: number) {
+export async function GET() {
   const session = await getServerSession(authOptions);
 
   if (!session || !session.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const id = bookId;
+  const userId = parseInt(session.user.id);
 
   try {
-    const book = await prisma.book.findUnique({ where: { id } });
-    return NextResponse.json({ book });
+    const books = await prisma.book.findMany({ where: { userId } });
+    return NextResponse.json({ books });
   } catch (error) {
     return NextResponse.json(
-      { error: "Failed to fetch book detail" },
+      { error: "Failed to fetch books" },
       { status: 500 }
     );
   }
