@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Heart from "./icons/Heart";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -8,7 +9,7 @@ const Footer = () => {
         {/* Brand Column */}
         <div className="md:col-span-1 space-y-2">
           <div className="flex items-center gap-2 font-semibold text-xl text-gray-900">
-            <img src="/logo/logo.png" alt="Logo" className="h-8 w-8" />
+            <Image src="/logo/logo_svg.svg" alt="Logo" width={32} height={32} />
             BooKeeper
           </div>
           <p className="flex items-center gap-1 text-gray-600">

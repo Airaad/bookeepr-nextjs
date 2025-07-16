@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ArrowUpRight from "./icons/ArrowUpRight";
 
 const HeroSection = () => {
   return (
@@ -18,7 +19,10 @@ const HeroSection = () => {
             href="/signup"
             className="bg-green-700 hover:bg-green-800 text-white font-medium px-6 py-3 rounded-xl shadow transition"
           >
-            Get Started Free
+            <div className="flex items-center justify-center gap-2">
+              <span> Get Started Free</span>
+              <ArrowUpRight />
+            </div>
           </Link>
           {/* <Link
             href="/demo"
@@ -38,6 +42,7 @@ const HeroSection = () => {
               width={1000}
               height={700}
               className="w-full h-auto p-8"
+              priority
             />
           </div>
         </div>

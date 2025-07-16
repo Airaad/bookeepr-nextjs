@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import MenuIcon from "./icons/MenuIcon";
 import CrossIcon from "./icons/CrossIcon";
+import Image from "next/image";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +11,7 @@ function Navbar() {
     <nav className="w-full bg-[#faf7f0]  fixed top-0 left-0 z-50">
       <div className="hidden max-w-7xl mx-auto px-4 py-5 sm:flex justify-between items-center">
         <Link href="/" className="flex items-center space-x-2">
-          <img src="/logo/logo.png" alt="Logo" className="h-8 w-8" />
+          <Image src="/logo/logo_svg.svg" alt="Logo" width={32} height={32} />
           <span className="text-3xl font-semibold tracking-tighter text-gray-800">
             BooKeeper
           </span>
@@ -32,7 +33,12 @@ function Navbar() {
         {!isOpen && (
           <div className="flex justify-between items-center">
             <Link href="/" className="flex items-center ml-2">
-              <img src="/logo/logo.png" alt="Logo" className="h-8 w-8" />
+              <Image
+                src="/logo/logo_svg.svg"
+                alt="Logo"
+                width={32}
+                height={32}
+              />
               <span className="text-xl font-semibold text-gray-800">
                 BooKeeper
               </span>
