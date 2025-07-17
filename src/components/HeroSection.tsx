@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import ArrowUpRight from "./icons/ArrowUpRight";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/(authentication-route)/auth/[...nextauth]/options";
 
-const HeroSection = () => {
+const HeroSection = async () => {
+  const session = await getServerSession(authOptions);
   return (
     <section className="bg-[#faf7f0] pt-20 px-4">
       <div className="max-w-2xl mx-auto text-center mt-14">
@@ -15,15 +18,28 @@ const HeroSection = () => {
         </p>
 
         <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
-          <Link
-            href="/signup"
-            className="bg-green-700 hover:bg-green-800 text-white font-medium px-6 py-3 rounded-xl shadow transition"
-          >
-            <div className="flex items-center justify-center gap-2">
-              <span> Get Started Free</span>
-              <ArrowUpRight />
-            </div>
-          </Link>
+          {!session ? (
+            <Link
+              href="/signup"
+              className="bg-green-700 hover:bg-green-800 text-white font-medium px-6 py-3 rounded-xl shadow transition"
+            >
+              <div className="flex items-center justify-center gap-2">
+                <span> Get Started Free</span>
+                <ArrowUpRight />
+              </div>
+            </Link>
+          ) : (
+            <Link
+              href="/my-books-page"
+              className="bg-green-700 hover:bg-green-800 text-white font-medium px-6 py-3 rounded-xl shadow transition"
+            >
+              <div className="flex items-center justify-center gap-2">
+                <span>My Library</span>
+                <ArrowUpRight />
+              </div>
+            </Link>
+          )}
+
           {/* <Link
             href="/demo"
             className="bg-green-100 hover:bg-green-200 text-green-900 font-semibold px-6 py-3 rounded-md shadow"

@@ -25,10 +25,9 @@ const features: Feature[] = [
   {
     icon: (
       <div className="flex items-center gap-2">
-        {/* Replace these with your own images or integrations */}
-        <img src="/logos/kit.svg" className="h-6" alt="Kit" />
+        {/* <img src="/logos/kit.svg" className="h-6" alt="Kit" />
         <img src="/logos/stripe.svg" className="h-6" alt="Stripe" />
-        <img src="/logos/zapier.svg" className="h-6" alt="Zapier" />
+        <img src="/logos/zapier.svg" className="h-6" alt="Zapier" /> */}
       </div>
     ),
     title: "Powerful integrations",
