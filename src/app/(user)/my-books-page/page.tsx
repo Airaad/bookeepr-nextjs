@@ -276,7 +276,6 @@ const books = [
 export default function MyBooksPage() {
   return (
     <div className="bg-[#faf7f0] min-h-screen py-20">
-      <Navbar />
       <UserBooksGrid books={books} />
     </div>
   );

@@ -10,7 +10,7 @@ export async function GET({ params }: { params: { bookId: string } }) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const id = parseInt(params.bookId);
+  const id = params.bookId;
 
   try {
     const book = await prisma.book.findUnique({ where: { id } });

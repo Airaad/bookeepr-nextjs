@@ -9,7 +9,7 @@ export async function DELETE({ params }: { params: { bookId: string } }) {
   if (!session || !session.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  const bookId = parseInt(params.bookId);
+  const bookId = params.bookId;
   try {
     await prisma.book.delete({ where: { id: bookId } });
     return NextResponse.json(

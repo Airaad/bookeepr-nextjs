@@ -1,10 +1,11 @@
 "use client";
 import { FC, useState, useMemo } from "react";
 import { formatDistanceToNow } from "date-fns";
-import Search from "./icons/Search";
 import ArrowLeft from "./icons/ArrowLeft";
 import ArrowRight from "./icons/ArrowRight";
 import SearchInputBox from "./SearchInputBox";
+import AddIcon from "./icons/AddIcon";
+import Link from "next/link";
 
 type Book = {
   id: string;
@@ -50,15 +51,22 @@ const UserBooksGrid: FC<UserBooksGridProps> = ({ books }) => {
       <h2 className="text-2xl md:text-3xl font-medium mb-4 text-gray-800 text-center">
         My Library
       </h2>
-      <SearchInputBox
-        size="md"
-        placeholder="Search by title or author"
-        value={searchTerm}
-        onChange={(e) => {
-          setSearchTerm(e.target.value);
-          setCurrentPage(1);
-        }}
-      />
+      <div className="flex items-center justify-center gap-2 my-6">
+        <SearchInputBox
+          size="md"
+          placeholder="Search by title or author"
+          value={searchTerm}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+            setCurrentPage(1);
+          }}
+        />
+        <Link href={"/add-book-page"}>
+          <button className="flex justify-between items-center bg-green-700 hover:bg-green-600 text-white rounded-full px-3 py-2 h-10 w-10">
+            <AddIcon />
+          </button>
+        </Link>
+      </div>
       {filteredBooks.length === 0 ? (
         <p className="text-center text-gray-500">No books found.</p>
       ) : (

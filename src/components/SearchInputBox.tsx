@@ -10,9 +10,9 @@ interface SearchBoxProps {
 }
 
 const boxSize = {
-  md: "max-w-md",
-  lg: "max-w-lg",
-  xl: "max-w-xl",
+  md: "w-md",
+  lg: "w-lg",
+  xl: "w-xl",
 };
 
 function SearchInputBox({
@@ -23,7 +23,7 @@ function SearchInputBox({
   size,
 }: SearchBoxProps) {
   return (
-    <div className={`mb-6 ${boxSize[size]} mx-auto relative`}>
+    <div className={`${boxSize[size]} relative`}>
       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
         <Search />
       </div>
@@ -32,7 +32,7 @@ function SearchInputBox({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="w-full border border-gray-300 shadow-sm rounded-md py-2 pl-10 pr-3 focus:outline-none focus:ring-2 focus:ring-green-700"
+        className="w-full border bg-white border-gray-300 shadow-sm rounded-md py-2 pl-10 pr-3 focus:outline-none focus:ring-2 focus:ring-green-700"
       />
     </div>
   );

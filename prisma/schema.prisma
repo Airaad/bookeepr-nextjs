@@ -62,10 +62,12 @@ model VerificationToken {
 
 model Book {
   id        String          @id @default(cuid())
-  isbn      Int
+  bookKey   String
+  coverId   Int?
   title     String
-  author    String
+  author    String?
   content   String
+  year      Int?
   rating    Int
   userId    String
   user      User     @relation(fields: [userId], references: [id])
