@@ -13,7 +13,12 @@ export async function GET() {
   const userId = session.user.id;
 
   try {
-    const books = await prisma.book.findMany({ where: { userId } });
+    const books = await prisma.book.findMany({
+      where: { userId },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
     return NextResponse.json({ books });
   } catch (error) {
     return NextResponse.json(

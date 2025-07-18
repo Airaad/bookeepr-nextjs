@@ -6,14 +6,19 @@ import ArrowRight from "./icons/ArrowRight";
 import SearchInputBox from "./SearchInputBox";
 import AddIcon from "./icons/AddIcon";
 import Link from "next/link";
+import Image from "next/image";
 
 type Book = {
   id: string;
+  bookKey: string;
   title: string;
-  author: string;
-  imageUrl: string;
+  author?: string;
+  content: string;
+  coverId?: number;
+  year?: number;
   rating: number;
-  createdAt: string;
+  createdAt: Date;
+  userId: string;
 };
 
 interface UserBooksGridProps {
@@ -25,12 +30,11 @@ const ITEMS_PER_PAGE = 12;
 const UserBooksGrid: FC<UserBooksGridProps> = ({ books }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-
   const filteredBooks = useMemo(() => {
     return books.filter(
       (book) =>
         book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        book.author.toLowerCase().includes(searchTerm.toLowerCase())
+        book.author?.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [searchTerm, books]);
 
@@ -78,15 +82,18 @@ const UserBooksGrid: FC<UserBooksGridProps> = ({ books }) => {
                 className="bg-[#2B3939] rounded-xl shadow hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden cursor-pointer"
               >
                 <div className="flex">
-                  <img
-                    src={book.imageUrl}
+                  <Image
+                    src={
+                      book.coverId
+                        ? `https://covers.openlibrary.org/b/id/${book.coverId}-M.jpg`
+                        : "/images/no_cover_image.png"
+                    }
                     alt={book.title}
-                    className="w-32 h-48 object-contain p-3"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.onerror = null;
-                      target.src = "/images/no_cover_image.png";
-                    }}
+                    className="object-contain p-3"
+                    width={128}
+                    height={192}
+                    placeholder="blur"
+                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8+vx1PQAIqAM4jZDFJQAAAABJRU5ErkJggg=="
                   />
                   <div className="p-4 flex flex-col justify-between space-y-2">
                     <div>
@@ -94,6 +101,11 @@ const UserBooksGrid: FC<UserBooksGridProps> = ({ books }) => {
                         {book.title}
                       </h3>
                       <p className="text-sm text-gray-300">by {book.author}</p>
+                      {book?.year && (
+                        <span className="inline-block bg-[#3a4c4c] text-gray-300 text-xs px-3 py-1 my-2 rounded-full">
+                          Year: {book.year}
+                        </span>
+                      )}
                       <div className="flex items-center space-x-1 mt-1">
                         {Array.from({ length: 5 }).map((_, i) => (
                           <svg

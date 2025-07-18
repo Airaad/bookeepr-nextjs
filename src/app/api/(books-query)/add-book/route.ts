@@ -5,14 +5,7 @@ export async function POST(req: NextRequest) {
   try {
     const { bookKey, coverId, title, author, content, rating, userId, year } =
       await req.json();
-    if (
-      !title ||
-      !author ||
-      !content ||
-      !rating ||
-      !userId ||
-      !bookKey
-    ) {
+    if (!title || !author || !content || !userId || !bookKey) {
       return NextResponse.json(
         { message: "Missing required fields" },
         { status: 400 }

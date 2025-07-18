@@ -55,8 +55,13 @@ export default function BookSearch({ session }: { session: Session }) {
   }, [query]);
 
   const handleSave = async () => {
-    if (!selectedBook || notes === "") return;
+    if (!selectedBook || notes === "") {
+      setError("Please add some notes to continue");
+      return;
+    }
     setLoading(true);
+    console.log(rating);
+
     try {
       const res = await axios.post("/api/add-book", {
         bookKey: selectedBook?.key,
@@ -73,9 +78,11 @@ export default function BookSearch({ session }: { session: Session }) {
       }
     } catch (error) {
       setError(error);
+      console.log(error);
     } finally {
       setSelectedBook(null);
       setNotes("");
+      setRating(0);
       setLoading(false);
     }
   };
@@ -249,6 +256,7 @@ export default function BookSearch({ session }: { session: Session }) {
                   Notes
                 </label>
                 <textarea
+                  required
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   rows={5}
@@ -257,10 +265,14 @@ export default function BookSearch({ session }: { session: Session }) {
                 />
               </div>
               <StarRating value={rating} onChange={(val) => setRating(val)} />
+              <p className="text-red-500">{error}</p>
               <div className="flex justify-between">
                 <button
                   disabled={loading}
-                  onClick={() => setStep("search")}
+                  onClick={() => {
+                    setRating(0);
+                    setStep("search");
+                  }}
                   className="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded-lg"
                 >
                   Back
