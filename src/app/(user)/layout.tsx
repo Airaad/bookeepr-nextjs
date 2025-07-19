@@ -1,14 +1,17 @@
 import Navbar from "@/components/Navbar";
+import { getServerSession } from "next-auth";
 import React from "react";
+import { authOptions } from "../api/(authentication-route)/auth/[...nextauth]/options";
 
-function UserLayout({
+async function UserLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession(authOptions);
   return (
     <>
-      <Navbar />
+      <Navbar session={session} />
       {children}
     </>
   );

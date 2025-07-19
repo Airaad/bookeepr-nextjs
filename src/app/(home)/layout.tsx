@@ -1,15 +1,18 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import { getServerSession } from "next-auth";
 import React from "react";
+import { authOptions } from "../api/(authentication-route)/auth/[...nextauth]/options";
 
-function Homelayout({
+async function Homelayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession(authOptions);
   return (
     <>
-      <Navbar />
+      <Navbar session={session} />
       {children}
       <Footer />
     </>
