@@ -29,6 +29,12 @@ export async function PUT(
         rating,
       },
     });
+    if (!updatedItem) {
+      return NextResponse.json(
+        { message: "Invalid book Id", success: false },
+        { status: 403 }
+      );
+    }
     return NextResponse.json(
       { message: "Updated successfully", success: true },
       { status: 201 }

@@ -5,7 +5,6 @@ import LoadingSpinner from "./icons/LoadingSpinner";
 import SearchInputBox from "./SearchInputBox";
 import SelectedIcon from "./icons/SelectedIcon";
 import Image from "next/image";
-import { Session } from "next-auth";
 import { useRouter } from "next/navigation";
 import BookForm from "./BookForm";
 
@@ -17,7 +16,7 @@ interface Book {
   first_publish_year?: number;
 }
 
-export default function BookSearch({ session }: { session: Session }) {
+export default function BookSearch() {
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Book[]>([]);
@@ -55,23 +54,27 @@ export default function BookSearch({ session }: { session: Session }) {
   }, [query]);
 
   const handleSave = async () => {
-    if (!selectedBook || notes === "") {
+    if (!selectedBook) {
+      setStep("search");
+      return;
+    }
+
+    if (notes === "") {
       setError("Please add some notes to continue");
       return;
     }
     setLoading(true);
-    console.log(rating);
+    setError(false);
 
     try {
       const res = await axios.post("/api/add-book", {
         bookKey: selectedBook?.key,
-        coverId: selectedBook.cover_i ?? null,
+        coverId: selectedBook?.cover_i,
         title: selectedBook?.title,
         author: selectedBook?.author_name?.join(", ") ?? "Unknown Author",
         content: notes,
         rating: rating,
-        year: selectedBook.first_publish_year ?? null,
-        userId: session?.user?.id,
+        year: selectedBook?.first_publish_year,
       });
       if (res.status === 201) {
         router.push("/my-books-page");

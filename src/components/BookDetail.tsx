@@ -49,6 +49,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ books }) => {
   if (loading) {
     return (
       <div className="bg-[#FAF7F0] min-h-screen flex justify-center items-center">
+        <h1 className="text-2xl text-red-500">Deleting in progress...</h1>
         <LoadingSpinner />
       </div>
     );
@@ -103,7 +104,11 @@ const BookDetail: React.FC<BookDetailProps> = ({ books }) => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:gap-5 mb-4">
         <p className="text-sm text-gray-600">
           By <span className="font-medium">{books.author}</span> · Published in{" "}
-          <span className="font-medium">{books.year}</span>
+          {books.year ? (
+            <span className="font-medium">{books.year}</span>
+          ) : (
+            <span className="font-medium">NaN</span>
+          )}
         </p>
         <div className=" text-yellow-500 text-2xl -translate-y-0.5">
           {"★".repeat(books.rating) + "☆".repeat(5 - books.rating)}
