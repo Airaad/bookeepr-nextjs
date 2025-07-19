@@ -51,7 +51,7 @@ const UserBooksGrid: FC<UserBooksGridProps> = ({ books }) => {
   };
 
   return (
-    <div className="bg-[#faf7f0] px-4 py-8 max-w-7xl mx-auto">
+    <div className="bg-[#faf7f0] px-4 py-3 max-w-7xl mx-auto">
       <h2 className="text-2xl md:text-3xl font-medium mb-4 text-gray-800 text-center">
         My Library
       </h2>
@@ -79,57 +79,61 @@ const UserBooksGrid: FC<UserBooksGridProps> = ({ books }) => {
             {paginatedBooks.map((book) => (
               <div
                 key={book.id}
-                className="bg-[#2B3939] rounded-xl shadow hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden cursor-pointer"
+                className="bg-[#2B3838] rounded-xl shadow hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden cursor-pointer"
               >
-                <div className="flex">
-                  <Image
-                    src={
-                      book.coverId
-                        ? `https://covers.openlibrary.org/b/id/${book.coverId}-M.jpg`
-                        : "/images/no_cover_image.png"
-                    }
-                    alt={book.title}
-                    className="object-contain p-3"
-                    width={128}
-                    height={192}
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8+vx1PQAIqAM4jZDFJQAAAABJRU5ErkJggg=="
-                  />
-                  <div className="p-4 flex flex-col justify-between space-y-2">
-                    <div>
-                      <h3 className="text-lg font-semibold text-white">
-                        {book.title}
-                      </h3>
-                      <p className="text-sm text-gray-300">by {book.author}</p>
-                      {book?.year && (
-                        <span className="inline-block bg-[#3a4c4c] text-gray-300 text-xs px-3 py-1 my-2 rounded-full">
-                          Year: {book.year}
-                        </span>
-                      )}
-                      <div className="flex items-center space-x-1 mt-1">
-                        {Array.from({ length: 5 }).map((_, i) => (
-                          <svg
-                            key={i}
-                            className={`w-5 h-5 ${
-                              i < book.rating
-                                ? "text-yellow-400"
-                                : "text-gray-300"
-                            }`}
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.286 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.785.57-1.84-.197-1.54-1.118l1.286-3.957a1 1 0 00-.364-1.118L2.075 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.957z" />
-                          </svg>
-                        ))}
+                <Link href={`/book-detail/${book.id}`}>
+                  <div className="flex">
+                    <Image
+                      src={
+                        book.coverId
+                          ? `https://covers.openlibrary.org/b/id/${book.coverId}-M.jpg`
+                          : "/images/no_cover_image.png"
+                      }
+                      alt={book.title}
+                      className="object-contain p-3"
+                      width={128}
+                      height={192}
+                      placeholder="blur"
+                      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8+vx1PQAIqAM4jZDFJQAAAABJRU5ErkJggg=="
+                    />
+                    <div className="p-4 flex flex-col justify-between space-y-2">
+                      <div>
+                        <h3 className="text-lg font-semibold text-white">
+                          {book.title}
+                        </h3>
+                        <p className="text-sm text-gray-300 my-2">
+                          by {book.author}
+                        </p>
+                        {book?.year && (
+                          <span className="inline-block bg-gray-700 text-gray-200 text-xs px-3 py-1 my-2 rounded-full -translate-x-1">
+                            Year: {book.year}
+                          </span>
+                        )}
+                        <div className="flex items-center space-x-1 mt-1">
+                          {Array.from({ length: 5 }).map((_, i) => (
+                            <svg
+                              key={i}
+                              className={`w-4 h-4 ${
+                                i < book.rating
+                                  ? "text-yellow-400"
+                                  : "text-gray-300"
+                              }`}
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                            >
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.286 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.785.57-1.84-.197-1.54-1.118l1.286-3.957a1 1 0 00-.364-1.118L2.075 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.957z" />
+                            </svg>
+                          ))}
+                        </div>
                       </div>
+                      <p className="text-xs text-gray-300">
+                        {formatDistanceToNow(new Date(book.createdAt), {
+                          addSuffix: true,
+                        })}
+                      </p>
                     </div>
-                    <p className="text-xs text-gray-300">
-                      {formatDistanceToNow(new Date(book.createdAt), {
-                        addSuffix: true,
-                      })}
-                    </p>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
           </div>
