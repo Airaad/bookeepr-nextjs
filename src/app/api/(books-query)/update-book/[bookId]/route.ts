@@ -5,7 +5,11 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { bookId: string } }
+  {
+    params,
+  }: {
+    params: Promise<{ bookId: string }>;
+  }
 ) {
   const { content, rating } = await req.json();
   const session = await getServerSession(authOptions);
@@ -40,6 +44,7 @@ export async function PUT(
       { status: 201 }
     );
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: "Something went wrong" },
       { status: 500 }

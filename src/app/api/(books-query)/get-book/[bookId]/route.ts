@@ -5,7 +5,11 @@ import prisma from "@/lib/prisma";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { bookId: string } }
+  {
+    params,
+  }: {
+    params: Promise<{ bookId: string }>;
+  }
 ) {
   const session = await getServerSession(authOptions);
 
@@ -19,14 +23,12 @@ export async function GET(
     const book = await prisma.book.findUnique({
       where: { id: bookId, userId: userId },
     });
-    if(!book){
-      return NextResponse.json(
-      { message: "Invalid Book Id" },
-      { status: 403 }
-    );
+    if (!book) {
+      return NextResponse.json({ message: "Invalid Book Id" }, { status: 403 });
     }
     return NextResponse.json({ book });
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { message: "Failed to fetch book detail" },
       { status: 500 }

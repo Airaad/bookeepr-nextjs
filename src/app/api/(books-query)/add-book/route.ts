@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
 
-    const res = await prisma.book.create({
+    await prisma.book.create({
       data: {
         ...bookData,
         userId: validUser.id,
@@ -53,6 +53,7 @@ export async function POST(req: NextRequest) {
       { status: 201 }
     );
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { message: "Something went wrong", success: false },
       { status: 500 }

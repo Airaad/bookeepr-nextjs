@@ -21,7 +21,7 @@ async function fetchBookDetails(bookId: string, userId: string) {
   }
 }
 
-async function UpdateBook({ params }: { params: { bookId: string } }) {
+async function UpdateBook({ params }: { params: Promise<{ bookId: string }> }) {
   const session = await getServerSession(authOptions);
   if (!session) {
     redirect("/signin");
@@ -39,7 +39,7 @@ async function UpdateBook({ params }: { params: { bookId: string } }) {
 
   return (
     <div className="pt-20 bg-[#FAF7F0] min-h-screen">
-      {/* @ts-ignore */}
+      {/* @ts-expect-error */}
       <UpdateForm book={book} />
     </div>
   );

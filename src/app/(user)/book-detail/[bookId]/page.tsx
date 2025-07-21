@@ -20,7 +20,7 @@ async function fetchBookDetails(bookId: string, userId: string) {
   }
 }
 
-export async function AboutBook({ params }: { params: { bookId: string } }) {
+async function AboutBook({ params }: { params: Promise<{ bookId: string }> }) {
   const session = await getServerSession(authOptions);
   if (!session) {
     redirect("/signin");
@@ -38,7 +38,7 @@ export async function AboutBook({ params }: { params: { bookId: string } }) {
 
   return (
     <div className="pt-20 bg-[#FAF7F0] min-h-screen">
-      {/* @ts-ignore */}
+      {/* @ts-expect-error */}
       <BookDetail books={book} />
     </div>
   );

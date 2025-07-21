@@ -30,7 +30,7 @@ export default async function MyBooksPage() {
 
   return (
     <div className="bg-[#faf7f0] min-h-screen py-20">
-      {/* @ts-ignore */}
+      {/* @ts-expect-error */}
       <UserBooksGrid books={books} />
     </div>
   );

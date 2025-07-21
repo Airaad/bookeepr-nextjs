@@ -5,7 +5,11 @@ import prisma from "@/lib/prisma";
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { bookId: string } }
+  {
+    params,
+  }: {
+    params: Promise<{ bookId: string }>;
+  }
 ) {
   const session = await getServerSession(authOptions);
   if (!session) {
@@ -36,6 +40,7 @@ export async function DELETE(
       { status: 201 }
     );
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: "Something went wrong" },
       { status: 500 }
