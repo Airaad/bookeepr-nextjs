@@ -1,7 +1,10 @@
 import { ReactNode } from "react";
-import Filter from "./icons/Filter";
 import Bookmark from "./icons/Bookmark";
-import User from "./icons/User";
+import LockIcon from "./icons/LockIcon";
+import BookSearchIcon from "./icons/BookSearchIcon";
+import CycleIcon from "./icons/CycleIcon";
+import LikeIcon from "./icons/LikeIcon";
+import MobileIcon from "./icons/MobileIcon";
 
 type Feature = {
   icon: ReactNode;
@@ -11,61 +14,40 @@ type Feature = {
 
 const features: Feature[] = [
   {
-    icon: <Filter />,
-    title: "Effortlessly track clicks and conversions",
+    icon: <LockIcon />,
+    title: "Google Login – Secure & Password-Free",
     description:
-      "You can create a link in seconds that automatically attributes revenue to specific content. No complicated setup or tracking scripts required.",
+      "Easily sign in using your Google account. No need to remember passwords – your data is safe and access is just a click away.",
+  },
+  {
+    icon: <BookSearchIcon />,
+    title: "Smart Book Search",
+    description:
+      "Search by book title, author, or ISBN. Instantly fetch book covers and details using the Open Library API – no need to fill out information manually.",
   },
   {
     icon: <Bookmark />,
-    title: "Save once, reuse everywhere.",
+    title: "Take Notes on Books You Read",
     description:
-      "Save your most commonly used links for reuse later. With one click, generate a new link for each book or idea to track what resonates most.",
+      "Write and save personal notes for each book you’re reading. Whether it’s a quote, a thought, or a summary – keep everything organized in one place.",
   },
   {
-    icon: (
-      <div className="flex items-center gap-2">
-        {/* <img src="/logos/kit.svg" className="h-6" alt="Kit" />
-        <img src="/logos/stripe.svg" className="h-6" alt="Stripe" />
-        <img src="/logos/zapier.svg" className="h-6" alt="Zapier" /> */}
-      </div>
-    ),
-    title: "Powerful integrations",
+    icon: <CycleIcon />,
+    title: "Book Cover & Info Auto-Fill",
     description:
-      "Connect with tools you already use. Automatically attribute book insights and notes wherever your audience acts.",
+      "As soon as you select a book, its cover, title, author, and published year are automatically filled in to keep your entries clean and professional.",
   },
   {
-    icon: <User />,
-    title: "Get the full story of your audience",
+    icon: <LikeIcon />,
+    title: "Rate Your Reads",
     description:
-      "Track the journey from first idea to implementation, with detailed insights on what content inspires best.",
+      "Add a personal rating for each book you’ve read, so you can look back at your favorites later.",
   },
   {
-    icon: (
-      <div className="flex items-center gap-1">
-        <kbd className="bg-gray-100 px-2 py-1 rounded font-mono text-sm border">
-          C
-        </kbd>
-      </div>
-    ),
-    title: "Keyboard shortcuts for everything",
+    icon: <MobileIcon />,
+    title: " Access From Any Device",
     description:
-      "Fly through the app with intuitive shortcuts. Create notes, tag books, or connect ideas faster than ever.",
-  },
-  {
-    icon: (
-      <div className="flex items-center gap-1">
-        <kbd className="bg-gray-100 px-2 py-1 rounded font-mono text-sm border">
-          ⌘
-        </kbd>
-        <kbd className="bg-gray-100 px-2 py-1 rounded font-mono text-sm border">
-          K
-        </kbd>
-      </div>
-    ),
-    title: "Unlock superpowers",
-    description:
-      "Access your entire library and actions with a universal command menu — search and perform in seconds.",
+      "Your notes and reading history are saved in the cloud. Switch between devices – laptop, phone, or tablet – and your data is always with you.",
   },
 ];
 
@@ -74,7 +56,7 @@ const FeatureSection = () => {
     <section className="bg-[#faf7f0] py-24 md:pt-32 px-4">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl  font-semibold text-gray-900 mb-12">
-          Capture book insights instantly
+          Highlights of Your Book Journey
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
