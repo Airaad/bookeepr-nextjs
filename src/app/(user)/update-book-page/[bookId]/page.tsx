@@ -39,7 +39,6 @@ async function UpdateBook({ params }: { params: Promise<{ bookId: string }> }) {
 
   return (
     <div className="pt-20 bg-[#FAF7F0] min-h-screen">
-      {/* @ts-expect-error */}
       <UpdateForm book={book} />
     </div>
   );

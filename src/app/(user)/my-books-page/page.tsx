@@ -13,11 +13,10 @@ async function fetchBooks(id: string) {
         createdAt: "desc",
       },
     });
-    if (books) {
-      return books;
-    }
+    return books;
   } catch (error) {
     console.log("something went wrong");
+    return [];
   }
 }
 
@@ -30,7 +29,6 @@ export default async function MyBooksPage() {
 
   return (
     <div className="bg-[#faf7f0] min-h-screen py-20">
-      {/* @ts-expect-error */}
       <UserBooksGrid books={books} />
     </div>
   );

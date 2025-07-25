@@ -10,10 +10,10 @@ type Book = {
   id: string;
   bookKey: string;
   title: string;
-  author?: string;
+  author: string | null;
   content: string;
-  coverId?: number;
-  year?: number;
+  coverId: number | null;
+  year: number | null;
   rating: number;
   createdAt: Date;
   userId: string;

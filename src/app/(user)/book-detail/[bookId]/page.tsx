@@ -38,8 +38,7 @@ async function AboutBook({ params }: { params: Promise<{ bookId: string }> }) {
 
   return (
     <div className="pt-20 bg-[#FAF7F0] min-h-screen">
-      {/* @ts-expect-error */}
-      <BookDetail books={book} />
+      <BookDetail book={book} />
     </div>
   );
 }
