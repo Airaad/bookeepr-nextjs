@@ -1,4 +1,5 @@
 import { authOptions } from "@/app/api/(authentication-route)/auth/[...nextauth]/options";
+import MyLibrary from "@/components/MyLibrary";
 import UserBooksGrid from "@/components/UserBooksGrid";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
@@ -29,7 +30,7 @@ export default async function MyBooksPage() {
 
   return (
     <div className="bg-[#faf7f0] min-h-screen py-20">
-      <UserBooksGrid books={books} />
+      <MyLibrary books={books} />
     </div>
   );
 }

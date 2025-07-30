@@ -57,7 +57,7 @@ const HeroSection = async () => {
               alt="Dashboard preview"
               width={1000}
               height={700}
-              className="w-full h-auto p-8"
+              className="w-full h-auto p-6"
               priority
             />
           </div>

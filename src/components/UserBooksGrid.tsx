@@ -82,7 +82,7 @@ const UserBooksGrid: FC<UserBooksGridProps> = ({ books }) => {
                 className="bg-[#2B3838] rounded-xl shadow hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden cursor-pointer"
               >
                 <Link href={`/book-detail/${book.id}`}>
-                  <div className="flex">
+                  <div className="">
                     <Image
                       src={
                         book.coverId
@@ -90,13 +90,13 @@ const UserBooksGrid: FC<UserBooksGridProps> = ({ books }) => {
                           : "/images/no_cover_image.png"
                       }
                       alt={book.title}
-                      className="object-contain p-3"
-                      width={128}
+                      className="object-contain p-3 mx-auto"
+                      width={160}
                       height={192}
                       placeholder="blur"
                       blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8+vx1PQAIqAM4jZDFJQAAAABJRU5ErkJggg=="
                     />
-                    <div className="p-4 flex flex-col justify-between space-y-2">
+                    <div className="p-4 flex flex-col justify-between space-y-1">
                       <div>
                         <h3 className="text-lg font-semibold text-white">
                           {book.title}
