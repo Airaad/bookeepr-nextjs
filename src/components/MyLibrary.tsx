@@ -7,6 +7,7 @@ import FilterSvg from "./icons/FilterSvg";
 import ArrowLeft from "./icons/ArrowLeft";
 import ArrowRight from "./icons/ArrowRight";
 import Link from "next/link";
+import AddIcon from "./icons/AddIcon";
 
 interface Book {
   rating: number;
@@ -257,7 +258,16 @@ export default function MyLibrary({ books }: MyLibraryProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">My Library</h1>
+          <div className="flex gap-5 items-center">
+            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+              My Library
+            </h1>
+            <Link href={"/add-book-page"}>
+              <button className="flex items-center p-1 bg-green-700 hover:bg-green-600 text-white rounded-full h-8 w-8">
+                <AddIcon />
+              </button>
+            </Link>
+          </div>
           <p className="text-gray-600 text-lg">
             Your personal collection of {books.length} book
             {books.length !== 1 ? "s" : ""}
