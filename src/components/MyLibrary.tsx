@@ -263,7 +263,7 @@ export default function MyLibrary({ books }: MyLibraryProps) {
               My Library
             </h1>
             <Link href={"/add-book-page"}>
-              <button className="flex items-center p-1 bg-green-700 hover:bg-green-600 text-white rounded-full h-8 w-8">
+              <button className="cursor-pointer flex items-center p-1 bg-green-700 hover:bg-green-600 text-white rounded-full h-8 w-8">
                 <AddIcon />
               </button>
             </Link>

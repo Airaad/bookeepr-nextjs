@@ -66,7 +66,7 @@ export default async function About() {
                 </span>
               </div>
             </div>
-            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
               Your Personal
               <span className="text-green-700 block">Reading Companion</span>
             </h1>

@@ -25,7 +25,10 @@ function Navbar({ session }: { session: Session | null }) {
           <Link href="/about" className="text-gray-700 hover:text-green-700">
             About
           </Link>
-          <Link href="/contact" className="text-gray-700 hover:text-green-700">
+          <Link
+            href="mailto:sheikhairaad@gmail.com"
+            className="text-gray-700 hover:text-green-700"
+          >
             Contact
           </Link>
           {session?.user.id && (
@@ -113,7 +116,7 @@ function Navbar({ session }: { session: Session | null }) {
                 About
               </span>
             </Link>
-            <Link href="/contact">
+            <Link href="mailto:sheikhairaad@gmail.com">
               <span className="text-white cursor-pointer hover:text-green-500">
                 Contact
               </span>
