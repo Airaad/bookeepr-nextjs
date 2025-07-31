@@ -2,7 +2,7 @@ import React from "react";
 import HeroSection from "@/components/HeroSection";
 import FeatureSection from "@/components/FeatureSection";
 
-async function page() {
+async function Home() {
   return (
     <div>
       <HeroSection />
@@ -11,4 +11,4 @@ async function page() {
   );
 }
 
-export default page;
+export default Home;
