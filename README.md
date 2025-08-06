@@ -33,21 +33,26 @@ Bookeeper is a full-stack Next.js application that allows users to easily take n
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Manual Installation
 
-### 1. Clone the repo
+### 1. Prerequisites
+Make sure you have the following installed on your machine:
+
+`node`
+
+### 2. Clone the repo
 
 ```bash
 git clone https://github.com/Airaad/bookeepr-nextjs.git
 ```
 
-### 2. Install the dependencies
+### 3. Install the dependencies
 
 ```bash
 npm intall
 ```
 
-### 3. Setup environment variables
+### 4. Setup environment variables
 Create a `.env` file in the root directory and add the following:
 
 ```bash
@@ -57,19 +62,50 @@ GOOGLE_CLIENT_ID="your google client id"
 GOOGLE_CLIENT_SECRET="your google client secret"
 ```
 
-### 4. Run Prisma migrations
+### 5. Run Prisma migrations
 
 ```bash
 npx prisma migrate dev --name init
 npx prisma generate
 ```
 
-### 5. Run the development server
+### 6. Run the development server
 
 ```bash
 npm run dev
 # or
 yarn dev
+```
+
+## 🚀 Docker Installation
+
+### 1. Prerequisites
+Make sure you have the following installed on your machine:
+
+`Docker`
+
+`Docker Compose`
+
+### 2. Clone the repo
+
+```bash
+git clone https://github.com/Airaad/bookeepr-nextjs.git
+```
+
+### 3. Setup environment variables
+Create a `.env` file in the root directory and add the following:
+
+```bash
+NEXTAUTH_SECRET=your next auth secret
+GOOGLE_CLIENT_ID=your google client id
+GOOGLE_CLIENT_SECRET=your google client secret
+```
+⚠️ Important:
+Do not wrap environment variable values in quotes (e.g. "value" or 'value').
+Docker Compose may misinterpret quotes as literal characters, which can break the container.
+### 4. Run the app using Docker Compose:
+```bash
+docker-compose up -d
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
