@@ -24,6 +24,6 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/kubernetes-test-app:${{ github.sha }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/kubernetes-test-app:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/bookeeper:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/bookeeper:latest
 
